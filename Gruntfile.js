@@ -114,7 +114,7 @@ module.exports = function(grunt){
     // инклудер
     includereplace: {
     your_target: {
-      src: 'source/*.html',
+      src: '*.html',
       dest: 'build/',
       expand: true,
       cwd: 'source/'
