@@ -27,8 +27,8 @@ module.exports = function(grunt){
     // grunt-watch
     watch: {
       style: {
-        files: ["source/less/**/*.less", "source/js/*.js"],
-        tasks: ["less", "postcss", "cssmin", "concat", "uglify"],
+        files: ["source/*.html", "source/less/**/*.less", "source/js/*.js"],
+        tasks: ["includereplace", "less", "postcss", "cssmin", "concat", "uglify"],
         options: {
           spawn: false,
           livereload: true
@@ -36,6 +36,51 @@ module.exports = function(grunt){
       }
     },
 
+    svgmin: {
+        options: {
+            plugins: [
+                {
+                    removeViewBox: false
+                }, {
+                    removeUselessStrokeAndFill: false
+                }, {
+                    removeAttrs: {
+                        attrs: ['xmlns']
+                    }
+                }
+            ]
+        },
+        dist: {
+            files: {
+                'source/img/expertise_icon.svg': 'source/expertise_icon.svg'
+            }
+        }
+    },
+
+    svg: {
+      src     : ['source/**/*.svg'],
+      dest    : 'source/',
+      options   : {
+        // Target-specific options 
+      }
+    },
+
+    svgclean: {
+      //compile: {
+        //files: {
+        //  'dist/images/head.svg': 'app/images/head.svg'
+       // }
+      //}, 
+
+      multiple: {
+        files: [{
+          expand: true
+        , cwd: 'source/images'
+        , src: '{,*/}*.svg'
+        , dest: 'source/'
+        }]
+      }
+    },
     // combine-media-quaries
     cmq: {
       style: {
@@ -82,7 +127,7 @@ module.exports = function(grunt){
           expand: true,
           cwd: "source",
           src: [
-            "img/**",
+            "img/**", "fonts/**", "video/**"
           ],
           dest: "build"
         }]
