@@ -98,6 +98,15 @@ module.exports = function(grunt){
       }
     },
 
+    //sprites
+    sprite:{
+      all: {
+        src: 'source/img/sprites/*.{png, jpg}',
+        dest: 'source/img/sprites/sprites.png',
+        destCss: 'source/img/sprites/sprites.css',
+        padding: 10
+      },
+    },
     // grunt-copy
     copy: {
       build: {
