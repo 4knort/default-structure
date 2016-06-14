@@ -1,11 +1,17 @@
 body{
-  font-family: x;
-  font-size: x px;
-  line-height: x px;
-  min-width: x px;
+  font-family: "x";
+  font-size: 1 px;
+  line-height: 1 px;
+  min-width: 1 px;
   margin: 0;
   padding: 0;
   background-color: #fff;
+}
+
+.container{
+  max-width: 1px;
+  margin: 0 auto;
+  padding: 0 1px;
 }
 
 a{
@@ -37,3 +43,45 @@ button:focus{
   outline: none;
 }
 
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
+  &::selection{
+    background-color: #1c93d5;
+    color: #fff;
+  }
+}
+//place holder style
+::-webkit-input-placeholder{
+  color: #426b95;
+}
+::-moz-placeholder{
+  color: #426b95;
+}/* Firefox 19+ */
+:-moz-placeholder{
+  color: #426b95;
+}/* Firefox 18- */
+:-ms-input-placeholder{
+  color: #426b95;
+}
+.show{
+  display: block;
+}
+
+input{
+  font-family: "x";
+  outline: none;
+  padding: 0;
+  border: none;
+  font-weight: normal;
+  font-size: 1px;
+}
+
+textarea{
+  outline: none;
+  border: none;
+}

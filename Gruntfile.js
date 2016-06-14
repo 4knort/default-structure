@@ -36,6 +36,7 @@ module.exports = function(grunt){
       }
     },
 
+    //svg minifier
     svgmin: {
         options: {
             plugins: [
@@ -51,36 +52,13 @@ module.exports = function(grunt){
             ]
         },
         dist: {
-            files: {
-                'source/img/expertise_icon.svg': 'source/expertise_icon.svg'
-            }
+            files: [{
+              expand: true,
+              src: ["build/img/**/*.svg"]
+            }]
         }
     },
 
-    svg: {
-      src     : ['source/**/*.svg'],
-      dest    : 'source/',
-      options   : {
-        // Target-specific options 
-      }
-    },
-
-    svgclean: {
-      //compile: {
-        //files: {
-        //  'dist/images/head.svg': 'app/images/head.svg'
-       // }
-      //}, 
-
-      multiple: {
-        files: [{
-          expand: true
-        , cwd: 'source/images'
-        , src: '{,*/}*.svg'
-        , dest: 'source/'
-        }]
-      }
-    },
     // combine-media-quaries
     cmq: {
       style: {
@@ -166,6 +144,7 @@ module.exports = function(grunt){
     }
   }
   });
+
 grunt.registerTask("build", [
     "clean",
     "copy",
@@ -176,7 +155,14 @@ grunt.registerTask("build", [
     "postcss",
     "cssmin",
     "imagemin",
+    "svgmin",
     "concat",
     "uglify"
   ]);
+
+grunt.registerTask("copy", [
+    "clean",
+    "copy"
+  ]);
 };
+
