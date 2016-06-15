@@ -36,6 +36,24 @@ module.exports = function(grunt){
       }
     },
 
+    //svg-sprite
+    svgstore: {
+      options: {
+        includeTitleElement: false,
+        svg: {
+          style: 'display:none',
+        },
+        cleanup: [
+          'fill',
+        ],
+      },
+      default : {
+        files: {
+          'build/img/sprite.svg': ['source/img/svg-icons/*.svg'],
+        },
+      },
+    },
+
     //svg minifier
     svgmin: {
         options: {
@@ -169,7 +187,7 @@ grunt.registerTask("build", [
     "uglify"
   ]);
 
-grunt.registerTask("copy", [
+grunt.registerTask("image", [
     "clean",
     "copy"
   ]);
