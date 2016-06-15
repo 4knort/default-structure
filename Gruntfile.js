@@ -49,7 +49,7 @@ module.exports = function(grunt){
       },
       default : {
         files: {
-          'build/img/sprite.svg': ['source/img/svg-icons/*.svg'],
+          'build/img/sprite.svg': ['build/img/sprites-svg/*.svg'],
         },
       },
     },
@@ -62,11 +62,7 @@ module.exports = function(grunt){
                     removeViewBox: false
                 }, {
                     removeUselessStrokeAndFill: false
-                }, {
-                    removeAttrs: {
-                        attrs: ['xmlns']
-                    }
-                }
+                },
             ]
         },
         dist: {
@@ -183,6 +179,7 @@ grunt.registerTask("build", [
     "cssmin",
     "imagemin",
     "svgmin",
+    "svgstore",
     "concat",
     "uglify"
   ]);
