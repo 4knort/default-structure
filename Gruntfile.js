@@ -36,6 +36,31 @@ module.exports = function(grunt){
       }
     },
 
+    //jade compiler
+     pug: {
+        compile: {
+            options: {
+                client: false,
+                pretty: true,
+                data: {
+                    debug: false
+                }
+            },
+            files: [
+            {
+                'build/index.html': ['source/index.jade']
+            },
+            {
+                src: "*.jade",
+                dest: "build/",
+                cwd: 'source/templates/',
+                expand: true,
+                ext: ".html"
+            } ]
+        }
+    },
+
+
     //svg-sprite
     svgstore: {
       options: {
