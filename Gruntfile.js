@@ -12,6 +12,15 @@ module.exports = function(grunt){
       }
     },
 
+    //компилятор стайлус
+    stylus: {
+      style: {
+        files: {
+          "build/css/style.css": "source/stylus/style.styl"
+        }
+      }
+    },
+
     // автопрефиксер
     postcss: {
       options: {
@@ -196,9 +205,8 @@ module.exports = function(grunt){
 grunt.registerTask("build", [
     "clean",
     "copy",
-    "includereplace",
-    "csscomb",
-    "less",
+    "pug",
+    "stylus",
     "cmq",
     "postcss",
     "cssmin",
