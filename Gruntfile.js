@@ -12,15 +12,6 @@ module.exports = function(grunt){
       }
     },
 
-    //компилятор стайлус
-    stylus: {
-      style: {
-        files: {
-          "build/css/style.css": "source/stylus/style.styl"
-        }
-      }
-    },
-
     // автопрефиксер
     postcss: {
       options: {
@@ -36,8 +27,8 @@ module.exports = function(grunt){
     // grunt-watch
     watch: {
       style: {
-        files: ["source/*.html", "source/less/**/*.less", "source/js/*.js"],
-        tasks: ["includereplace", "less", "postcss", "cssmin", "concat", "uglify"],
+        files: ["source/*.html", "source/less/**/*.less", "source/js/*.js", "source/img/**/*"],
+        tasks: ["clean", "sprite", "copy", "svgmin", "svgstore", "includereplace", "less", "postcss", "cssmin", "concat", "uglify"],
         options: {
           spawn: false,
           livereload: true
@@ -149,9 +140,9 @@ module.exports = function(grunt){
     //sprites
     sprite:{
       all: {
-        src: 'source/img/sprites/*.{png, jpg}',
+        src: 'source/img/sprites/*.png',
         dest: 'source/img/sprites/sprites.png',
-        destCss: 'source/img/sprites/sprites.css',
+        destCss: 'source/less/sprites.less',
         padding: 10
       },
     },
@@ -171,7 +162,7 @@ module.exports = function(grunt){
 
     // grunt-clean
     clean: {
-      build: ["build"]
+      build: ["build", "source/img/sprites/sprites.png", "source/img/sprites/sprites.css"]
     },
 
     // склеивание js
@@ -189,7 +180,7 @@ module.exports = function(grunt){
           "build/js/script.min.js": ["build/js/script.js"]
         }
       }
-    }, 
+    },
 
     // инклудер
     includereplace: {
@@ -204,9 +195,11 @@ module.exports = function(grunt){
 
 grunt.registerTask("build", [
     "clean",
+    "sprite",
     "copy",
-    "pug",
-    "stylus",
+    "includereplace",
+    "csscomb",
+    "less",
     "cmq",
     "postcss",
     "cssmin",
@@ -216,10 +209,4 @@ grunt.registerTask("build", [
     "concat",
     "uglify"
   ]);
-
-grunt.registerTask("image", [
-    "clean",
-    "copy"
-  ]);
 };
-
