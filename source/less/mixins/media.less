@@ -1,0 +1,16 @@
+.media(@width,@rules){
+  @media (max-width: @width){
+    @rules();
+  }
+}
+
+
+// example
+.example{
+  width: 100%;
+  height: 500px;
+  background-color: red;
+  .media(500px, {
+    background-color: yellow;
+  })
+}
