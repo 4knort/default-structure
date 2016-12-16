@@ -190,7 +190,19 @@ module.exports = function(grunt){
       expand: true,
       cwd: 'source/'
     }
-  }
+  },
+    connect: {
+      server: {
+        options: {
+          port: 9000,
+          base: 'build/',
+          hostname: '0.0.0.0',
+          protocol: 'http',
+          livereload: true,
+          open: true,
+        }
+      }
+    }
   });
 
 grunt.registerTask("build", [
@@ -208,5 +220,9 @@ grunt.registerTask("build", [
     "svgstore",
     "concat",
     "uglify"
+  ]);
+grunt.registerTask("server", [
+    "connect",
+    "watch"
   ]);
 };
