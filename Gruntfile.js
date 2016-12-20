@@ -25,7 +25,6 @@ module.exports = function(grunt){
     },
 
     // grunt-watch
-    // grunt-watch
     watch: {
       style: {
         files: ["source/*.html", "source/less/**/*.less", "source/js/*.js"],
@@ -64,7 +63,6 @@ module.exports = function(grunt){
             } ]
         }
     },
-
 
     //svg-sprite
     svgstore: {
@@ -151,6 +149,7 @@ module.exports = function(grunt){
         padding: 10
       },
     },
+    
     // grunt-copy
     copy: {
       build: {
