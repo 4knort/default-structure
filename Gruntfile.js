@@ -25,14 +25,19 @@ module.exports = function(grunt){
     },
 
     // grunt-watch
+    // grunt-watch
     watch: {
       style: {
-        files: ["source/*.html", "source/less/**/*.less", "source/js/*.js", "source/img/**/*"],
-        tasks: ["clean", "sprite", "copy", "svgmin", "svgstore", "includereplace", "less", "postcss", "cssmin", "concat", "uglify"],
+        files: ["source/*.html", "source/less/**/*.less", "source/js/*.js"],
+        tasks: ["includereplace", "less", "postcss", "cssmin", "concat", "uglify"],
         options: {
           spawn: false,
           livereload: true
         }
+      },
+      images: {
+        files: ["source/img/**/*.png", "source/img/**/*.svg", "source/img/**"],
+        tasks: ["clean", "sprite", "copy", "svgmin", "svgstore"],
       }
     },
 
@@ -153,7 +158,7 @@ module.exports = function(grunt){
           expand: true,
           cwd: "source",
           src: [
-            "img/**", "fonts/**", "video/**"
+            "img/**.png", "img/**.jpg", "img/**.svg", "img/**.gif", "img/sprites/sprites.png", "fonts/**", "video/**"
           ],
           dest: "build"
         }]
@@ -191,6 +196,8 @@ module.exports = function(grunt){
       cwd: 'source/'
     }
   },
+
+    //connect for grunt-watch
     connect: {
       server: {
         options: {
@@ -203,6 +210,7 @@ module.exports = function(grunt){
         }
       }
     }
+
   });
 
 grunt.registerTask("build", [
